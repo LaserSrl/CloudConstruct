@@ -111,6 +111,7 @@
     <Compile Include="Controllers\SecureFileFieldController.cs" />
     <Compile Include="Drivers\SecureFileFieldFieldDriver.cs" />
     <Compile Include="Fields\SecureFileField.cs" />
+    <Compile Include="Handlers\SecureFileFieldHandler.cs" />
     <Compile Include="Providers\SecureFileStorageProvider.cs" />
     <Compile Include="Providers\SecureAzureBlobStorageProvider.cs" />
     <Compile Include="Providers\IStorageFile.cs" />

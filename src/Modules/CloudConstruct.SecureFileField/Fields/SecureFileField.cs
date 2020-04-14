@@ -1,10 +1,13 @@
 ﻿using Orchard.ContentManagement;
 using Orchard.ContentManagement.FieldStorage;
+using Orchard.ContentManagement.Utilities;
 
 namespace CloudConstruct.SecureFileField.Fields
 {
     public class SecureFileField : ContentField
     {
+        internal LazyField<string> _secureUrl = new LazyField<string>();
+
         public string Url {
             get { return Storage.Get<string>(); }
             set { Storage.Set(value); }
@@ -43,8 +46,11 @@ namespace CloudConstruct.SecureFileField.Fields
         //    return "/CloudConstruct.SecureFileField/SecureFileField/GetSecureFile/" + id + "?fieldName=" + this.Name;
         //}
 
-        public string SecureUrl { get; set; }
-
+        public string SecureUrl {
+            get {
+                return _secureUrl.Value;
+            }
+        }
         public string SharedAccessUrl { get; set; }
     }
 }

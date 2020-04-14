@@ -32,9 +32,6 @@ namespace CloudConstruct.SecureFileField.Drivers {
         }
 
         protected override DriverResult Display(ContentPart part, Fields.SecureFileField field, string displayType, dynamic shapeHelper) {
-
-            field.SecureUrl = "/CloudConstruct.SecureFileField/SecureFileField/GetSecureFile/" + part.Id + "?fieldName=" + field.Name;
-
             //does the user want to use shared access sigs
             var settings = field.PartFieldDefinition.Settings.GetModel<SecureFileFieldSettings>();
 
@@ -53,8 +50,6 @@ namespace CloudConstruct.SecureFileField.Drivers {
         }
 
         protected override DriverResult Editor(ContentPart part, Fields.SecureFileField field, dynamic shapeHelper) {
-            field.SecureUrl = "/CloudConstruct.SecureFileField/SecureFileField/GetSecureFile/" + part.Id + "?fieldName=" + field.Name;
-
             return ContentShape("Fields_SecureFile_Edit", GetDifferentiator(field, part),
                 () => shapeHelper.EditorTemplate(TemplateName: "Fields/SecureFile.Edit", Model: field, Prefix: GetPrefix(field, part)));
         }
