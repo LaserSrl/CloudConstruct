@@ -1,0 +1,158 @@
+﻿# Orchard resource strings - it-IT
+# Copyright (c) 2020 Laser s.r.l.
+
+
+# > #: msgctxt { contesto del messaggio - Originale }
+# > #| msgid { identificativo del messaggio - Originale }
+# > msgctxt  "{ contesto del messaggio }"
+# > msgid "{ identificativo del messaggio }"
+# > msgstr "{ messaggio }"
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Allow only specific extensions"
+msgstr "Permetti solo estensioni specifiche"
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Check to ensure the file name unicity."
+msgstr "Seleziona per imporre di usare nomi unici per i files."
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Check to ensure the user is providing a valid media for this field."
+msgstr "Seleziona per verificare che l'utente dia un media valido per questo campo."
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Custom1"
+msgstr "Custom1"
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Custom2"
+msgstr "Custom2"
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Custom3"
+msgstr "Custom3"
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Generate a new file name at every upload"
+msgstr "Genera un nuovo nome file ad ogni caricamento"
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Help text"
+msgstr "Testo di aiuto"
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Leave it empty if you don't want to apply any restriction."
+msgstr "Lascia vuoto se non vuoi imporre nessuna restrizione."
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Leave it empty if you don't want to use this option."
+msgstr "Lascia vuoto se non vuoi usare questa opzione."
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Please enter in your Windows Azure Blob Storage account name."
+msgstr "Inserisci il tuo nome di account per Windows Azure Blob Storage."
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Secure Directory or Container Name"
+msgstr "Nome della cartella o del contenitore sicuro"
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "The help text is written under the field when authors are selecting a media."
+msgstr "Il testo di aiuto è scritto sotto il campo quando gli autori stanno selezionando un media."
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "The media is required"
+msgstr "Il media è necessario"
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "The secure directory/container name will be used to store your files inside. Make sure this container or folder exists prior to uploading a file. Example, 'c:\\temp' or 'secure' for BLOBS."
+msgstr "Il nome della directory/contenitore che sarà usato per i files. Assicurati che questo contenitore o cartella esista prima di caricare i files. Esempi: 'c:\\temp' o 'sicuro' per i BLOB."
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "You can define a set of extensions the user will be able to pick, separated by spaces, e.g. jpg png gif"
+msgstr "Puoi selezionare un insieme di estensioni per i files che l'utente potrà scegliere, separate da spazio, e.g. jpg png gif"
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/EditorTemplates/Fields/SecureFile.Edit.cshtml"
+msgid "Browse"
+msgstr "Sfoglia"
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/EditorTemplates/Fields/SecureFile.Edit.cshtml"
+msgid "Current"
+msgstr "File attuale"
+
+msgctxt "CloudConstruct.SecureFileField.Drivers.SecureFileFieldDriver"
+msgid "The field {0} is mandatory"
+msgstr "Il campo {0} è obbligatorio"
+
+msgctxt "CloudConstruct.SecureFileField.Drivers.SecureFileFieldDriver"
+msgid "The field {0} must have one of these extensions: {1}"
+msgstr "Il campo {0} deve avere una di queste estensioni: {1}"
+
+msgctxt "CloudConstruct.SecureFileField.Drivers.SecureFileFieldDriver"
+msgid "The url of the media."
+msgstr "L'URL del media."
+
+msgctxt "CloudConstruct.SecureFileField.Drivers.SecureFileFieldDriver"
+msgid "Url"
+msgstr "URL"
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
+msgid "Alignment"
+msgstr "Allineamento"
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
+msgid "Alternate Text"
+msgstr "Testo alternativo"
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
+msgid "Class"
+msgstr "Classe"
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
+msgid "Height"
+msgstr "Altezza"
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
+msgid "Style"
+msgstr "Stile"
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
+msgid "The alignment of the media."
+msgstr "L'allineamento del media."
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
+msgid "The alternate text of the media."
+msgstr "Il testo alternativo del media."
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
+msgid "The class of the media."
+msgstr "La classe del media."
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
+msgid "The height of the media."
+msgstr "L'altezza del media."
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
+msgid "The style of the media."
+msgstr "Lo stile del media."
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
+msgid "The url of the media."
+msgstr "L'URL del media."
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
+msgid "The width of the media."
+msgstr "La larghezza del media."
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
+msgid "Tokens for Secure File Fields"
+msgstr "Tokens per i Campi di File Sicuri"
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
+msgid "Url"
+msgstr "URL"
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
+msgid "Width"
+msgstr "Larghezza"
+
