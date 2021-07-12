@@ -1,6 +1,7 @@
 ﻿using Orchard.ContentManagement;
 using Orchard.ContentManagement.FieldStorage;
 using Orchard.ContentManagement.Utilities;
+using System;
 
 namespace CloudConstruct.SecureFileField.Fields
 {
@@ -52,5 +53,14 @@ namespace CloudConstruct.SecureFileField.Fields
             }
         }
         public string SharedAccessUrl { get; set; }
+
+        /// <summary>
+        /// Upload date is used in case url of the file is in a subfolder like "Root/YYYYMMDD/file".
+        /// This behaviour is defined in <see cref="Settings.SecureFileFieldSettings"/>.
+        /// </summary>
+        public DateTime Upload {
+            get { return Storage.Get<DateTime>(); }
+            set { Storage.Set(value); }
+        }
     }
 }
