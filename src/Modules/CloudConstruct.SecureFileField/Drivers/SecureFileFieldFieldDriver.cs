@@ -84,6 +84,8 @@ namespace CloudConstruct.SecureFileField.Drivers {
                             return Editor(part, field, shapeHelper);
                         }
 
+                        DateTime upload = DateTime.UtcNow;
+                        field.Upload = upload;
                         field.Url = fname;
                         IStorageProvider provider;
 
@@ -100,6 +102,8 @@ namespace CloudConstruct.SecureFileField.Drivers {
                                 case UrlType.Custom:
                                     if (!string.IsNullOrWhiteSpace(settings.CustomSubfolder)) {
                                         url = Path.Combine(url, settings.CustomSubfolder);
+                                        if (!Directory.Exists(url))
+                                            Directory.CreateDirectory(url); 
                                     }
                                     break;
 
@@ -107,9 +111,10 @@ namespace CloudConstruct.SecureFileField.Drivers {
                                     break;
 
                                 case UrlType.UploadDate:
-                                    field.Upload = DateTime.UtcNow;
-                                    string subfolder = field.Upload.Year.ToString() + field.Upload.Month.ToString("00") + field.Upload.Day.ToString("00");
+                                    string subfolder = upload.Year.ToString() + upload.Month.ToString("00") + upload.Day.ToString("00");
                                     url = Path.Combine(url, subfolder);
+                                    if (!Directory.Exists(url))
+                                        Directory.CreateDirectory(url);
                                     break;
                             }
 

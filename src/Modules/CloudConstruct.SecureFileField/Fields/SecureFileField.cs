@@ -54,13 +54,9 @@ namespace CloudConstruct.SecureFileField.Fields
         }
         public string SharedAccessUrl { get; set; }
 
-        /// <summary>
-        /// Upload date is used in case url of the file is in a subfolder like "Root/YYYYMMDD/file".
-        /// This behaviour is defined in <see cref="Settings.SecureFileFieldSettings"/>.
-        /// </summary>
         public DateTime Upload {
-            get { return Storage.Get<DateTime>(); }
-            set { Storage.Set(value); }
+            get { return Storage.Get<DateTime>("Upload"); }
+            set { Storage.Set("Upload", value); }
         }
     }
 }
