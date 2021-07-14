@@ -84,6 +84,8 @@ namespace CloudConstruct.SecureFileField.Drivers {
                             return Editor(part, field, shapeHelper);
                         }
 
+                        DateTime upload = DateTime.UtcNow;
+                        field.Upload = upload;
                         field.Url = fname;
                         IStorageProvider provider;
 
@@ -92,10 +94,28 @@ namespace CloudConstruct.SecureFileField.Drivers {
                             provider = new SecureAzureBlobStorageProvider(settings.SecureBlobAccountName, settings.SecureSharedKey,
                                                                           settings.SecureBlobEndpoint, true, settings.SecureDirectoryName);
 
-                        }
-                        else {
-                            provider = new SecureFileStorageProvider(settings.SecureDirectoryName);
+                        } else {
+                            // The secure directory now depends from Settings.UrlType.
+                            string url = settings.SecureDirectoryName;
 
+                            switch (settings.UrlType) {
+                                case UrlType.Custom:
+                                    if (!string.IsNullOrWhiteSpace(settings.CustomSubfolder)) {
+                                        url = Path.Combine(url, settings.CustomSubfolder);
+                                        if (!Directory.Exists(url))
+                                            Directory.CreateDirectory(url); 
+                                    }
+                                    break;
+                                    
+                                case UrlType.UploadDate:
+                                    string subfolder = upload.Year.ToString() + upload.Month.ToString("00") + upload.Day.ToString("00");
+                                    url = Path.Combine(url, subfolder);
+                                    if (!Directory.Exists(url))
+                                        Directory.CreateDirectory(url);
+                                    break;
+                            }
+
+                            provider = new SecureFileStorageProvider(url);
                         }
 
                         int length = (int)file.ContentLength;
@@ -107,8 +127,7 @@ namespace CloudConstruct.SecureFileField.Drivers {
                         provider.Insert(fname, buffer, file.ContentType, length, true);
                     }
 
-                }
-                catch (Exception) {
+                } catch (Exception) {
 
                     throw;
                 }
@@ -126,6 +145,7 @@ namespace CloudConstruct.SecureFileField.Drivers {
             context.ImportAttribute(field.FieldDefinition.Name + "." + field.Name, "Alignment", value => field.Alignment = value);
             context.ImportAttribute(field.FieldDefinition.Name + "." + field.Name, "Width", value => field.Width = Int32.Parse(value));
             context.ImportAttribute(field.FieldDefinition.Name + "." + field.Name, "Height", value => field.Height = Int32.Parse(value));
+            context.ImportAttribute(field.FieldDefinition.Name + "." + field.Name, "Upload", value => field.Upload = DateTime.Parse(value));
         }
 
         protected override void Exporting(ContentPart part, Fields.SecureFileField field, ExportContentContext context) {
@@ -136,6 +156,7 @@ namespace CloudConstruct.SecureFileField.Drivers {
             context.Element(field.FieldDefinition.Name + "." + field.Name).SetAttributeValue("Alignment", field.Alignment);
             context.Element(field.FieldDefinition.Name + "." + field.Name).SetAttributeValue("Width", field.Width);
             context.Element(field.FieldDefinition.Name + "." + field.Name).SetAttributeValue("Height", field.Height);
+            context.Element(field.FieldDefinition.Name + "." + field.Name).SetAttributeValue("Upload", field.Upload);
         }
 
         protected override void Describe(DescribeMembersContext context) {

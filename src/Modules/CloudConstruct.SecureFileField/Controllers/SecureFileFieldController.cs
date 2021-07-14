@@ -109,7 +109,23 @@ namespace CloudConstruct.SecureFileField.Controllers {
                                                                                                  settings.SecureBlobEndpoint, true, settings.SecureDirectoryName);
 	            }
 	            else {
-	                provider = new SecureFileStorageProvider(settings.SecureDirectoryName);
+                    // I need to check if, by setting, the file is in a subfolder.
+                    string repo = settings.SecureDirectoryName;
+                    if (settings.UrlType != UrlType.Standard) {
+                        switch (settings.UrlType) {
+                            case UrlType.Custom:
+                                if (!string.IsNullOrWhiteSpace(settings.CustomSubfolder)) {
+                                    repo = Path.Combine(repo, settings.CustomSubfolder);
+                                }
+                                break;
+
+                            case UrlType.UploadDate:
+                                string subfolder = field.Upload.Year.ToString() + field.Upload.Month.ToString("00") + field.Upload.Day.ToString("00");
+                                repo = Path.Combine(repo, subfolder);
+                                break;
+                        }
+                    }
+	                provider = new SecureFileStorageProvider(repo);
 	            }
 
                 IStorageFile file = provider.Get<StorageFile>(field.Url);
