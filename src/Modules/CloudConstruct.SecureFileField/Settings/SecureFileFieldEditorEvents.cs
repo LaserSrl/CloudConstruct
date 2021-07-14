@@ -29,12 +29,10 @@ namespace CloudConstruct.SecureFileField.Settings {
             var model = new SecureFileFieldSettings();
             if (updateModel.TryUpdateModel(model, "SecureFileFieldSettings", null, null)) {
                 // I need to check CustomSubfolder value for specific UrlTypes.
-                if (model.UrlType == UrlType.Custom || model.UrlType == UrlType.Token) {
+                if (model.UrlType == UrlType.Custom) {
                     if (string.IsNullOrWhiteSpace(model.CustomSubfolder)) {
                         updateModel.AddModelError("SecureFileFieldSettings.CustomSubfolder", T("CustomSubfolder missing"));
-                    } else if (model.UrlType == UrlType.Token && !IsToken(model.CustomSubfolder)) {
-                        updateModel.AddModelError("SecureFileFieldSettings.CustomSubfolder", T("CustomSubfolder isn't a valid token"));
-                    }
+                    } 
                 }
 
                 builder.WithSetting("SecureFileFieldSettings.Hint", model.Hint);
@@ -54,10 +52,6 @@ namespace CloudConstruct.SecureFileField.Settings {
             }
 
             yield return DefinitionTemplate(model);
-        }
-
-        private bool IsToken(string value) {
-            return (value.StartsWith("{") && value.EndsWith("}"));
         }
     }
 }

@@ -8,7 +8,6 @@
     public enum UrlType {
         Standard = 0,
         UploadDate,
-        Token,
         Custom
     }
 

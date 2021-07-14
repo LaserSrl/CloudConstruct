@@ -70,14 +70,13 @@
         <select id="@Html.FieldIdFor(m => m.UrlType)" name="@Html.FieldNameFor(m => m.UrlType)">
             @Html.SelectOption(Model.UrlType, CloudConstruct.SecureFileField.Settings.UrlType.Standard, T("No subdirectory").ToString())
             @Html.SelectOption(Model.UrlType, CloudConstruct.SecureFileField.Settings.UrlType.UploadDate, T("Subdirectory based on upload date, with 'YYYYMMDD' format").ToString())
-            @Html.SelectOption(Model.UrlType, CloudConstruct.SecureFileField.Settings.UrlType.Token, T("Subdirectory based on a token").ToString())
             @Html.SelectOption(Model.UrlType, CloudConstruct.SecureFileField.Settings.UrlType.Custom, T("Subdirectory based on a custom string").ToString())
         </select>
         <span class="hint">@T("In case files are stored in a Secure Directory (not via Azure Blob Storage), this is the format of the subdirectory to save the files in.")</span>
         <span class="hint">@T("Choose 'Standard' if you don't want to sort secure files in subdirectories.")</span>
     </div>
     <div>
-        <label for="@Html.FieldIdFor(m=>m.CustomSubfolder)">@T("Custom subfolder format, needed in case of 'Token' or 'Custom' subdirectory types")</label>
+        <label for="@Html.FieldIdFor(m=>m.CustomSubfolder)">@T("Custom subfolder format, needed in case of 'Custom' subdirectory types. It can be a token.")</label>
         @Html.TextBoxFor(m => m.CustomSubfolder, new { @class = "text medium tokenized" })
         @Html.ValidationMessageFor(m => m.CustomSubfolder)
     </div>

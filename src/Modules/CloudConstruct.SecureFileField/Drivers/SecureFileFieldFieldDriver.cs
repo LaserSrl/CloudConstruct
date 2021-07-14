@@ -106,10 +106,7 @@ namespace CloudConstruct.SecureFileField.Drivers {
                                             Directory.CreateDirectory(url); 
                                     }
                                     break;
-
-                                case UrlType.Token:
-                                    break;
-
+                                    
                                 case UrlType.UploadDate:
                                     string subfolder = upload.Year.ToString() + upload.Month.ToString("00") + upload.Day.ToString("00");
                                     url = Path.Combine(url, subfolder);

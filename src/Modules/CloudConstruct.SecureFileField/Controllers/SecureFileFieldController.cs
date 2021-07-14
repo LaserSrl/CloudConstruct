@@ -119,9 +119,6 @@ namespace CloudConstruct.SecureFileField.Controllers {
                                 }
                                 break;
 
-                            case UrlType.Token:
-                                break;
-
                             case UrlType.UploadDate:
                                 string subfolder = field.Upload.Year.ToString() + field.Upload.Month.ToString("00") + field.Upload.Day.ToString("00");
                                 repo = Path.Combine(repo, subfolder);
