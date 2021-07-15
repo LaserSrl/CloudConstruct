@@ -13,6 +13,7 @@ using Orchard.Core.Common.Models;
 using Orchard.Roles.Models;
 using Orchard.Security;
 using Orchard.Core.Contents;
+
 namespace CloudConstruct.SecureFileField.Controllers {
 
 	public class SecureFileFieldController : Controller {
@@ -21,6 +22,7 @@ namespace CloudConstruct.SecureFileField.Controllers {
         private readonly IAuthorizationService _authorizationService;
         private static readonly string[] AnonymousRole = new[] { "Anonymous" };
         private static readonly string[] AuthenticatedRole = new[] { "Authenticated" };
+
         public SecureFileFieldController(IOrchardServices services, IAuthorizationService authorizationService)
         {
 			_services = services;
@@ -34,7 +36,6 @@ namespace CloudConstruct.SecureFileField.Controllers {
         /// <param name="fieldName">Unique Field Name for the file field.</param>
         /// <returns></returns>
 	    public FileResult GetSecureFile(int id, string fieldName) {
-
 	        var accessGranted = false;
 	        WorkContext wc = _services.WorkContext;
 	        IUser user = _services.WorkContext.CurrentUser;
@@ -111,20 +112,8 @@ namespace CloudConstruct.SecureFileField.Controllers {
 	            else {
                     // I need to check if, by setting, the file is in a subfolder.
                     string repo = settings.SecureDirectoryName;
-                    if (settings.UrlType != UrlType.Standard) {
-                        switch (settings.UrlType) {
-                            case UrlType.Custom:
-                                if (!string.IsNullOrWhiteSpace(settings.CustomSubfolder)) {
-                                    repo = Path.Combine(repo, settings.CustomSubfolder);
-                                }
-                                break;
-
-                            case UrlType.UploadDate:
-                                string subfolder = field.Upload.Year.ToString() + field.Upload.Month.ToString("00") + field.Upload.Day.ToString("00");
-                                repo = Path.Combine(repo, subfolder);
-                                break;
-                        }
-                    }
+                    if (!string.IsNullOrWhiteSpace(field.Subfolder))
+                        repo = Path.Combine(repo, field.Subfolder);
 	                provider = new SecureFileStorageProvider(repo);
 	            }
 

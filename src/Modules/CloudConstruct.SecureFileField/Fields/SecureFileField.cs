@@ -58,5 +58,10 @@ namespace CloudConstruct.SecureFileField.Fields
             get { return Storage.Get<DateTime>("Upload"); }
             set { Storage.Set("Upload", value); }
         }
+
+        public string Subfolder {
+            get { return Storage.Get<string>("Subfolder"); }
+            set { Storage.Set("Subfolder", value); }
+        }
     }
 }

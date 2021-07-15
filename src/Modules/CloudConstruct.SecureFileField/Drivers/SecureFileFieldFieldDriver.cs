@@ -1,28 +1,30 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using CloudConstruct.SecureFileField.Providers;
+﻿using CloudConstruct.SecureFileField.Providers;
 using CloudConstruct.SecureFileField.Settings;
 using Orchard;
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Drivers;
 using Orchard.ContentManagement.Handlers;
 using Orchard.Localization;
+using Orchard.Tokens;
 using Orchard.Utility.Extensions;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace CloudConstruct.SecureFileField.Drivers {
 
     public class SecureFileFieldDriver : ContentFieldDriver<Fields.SecureFileField> {
         private readonly IWorkContextAccessor _workContextAccessor;
+        public Localizer T { get; set; }
+        private readonly ITokenizer _tokenizer;
 
-        public SecureFileFieldDriver(IWorkContextAccessor workContextAccessor) {
+        public SecureFileFieldDriver(IWorkContextAccessor workContextAccessor, ITokenizer tokenizer) {
             T = NullLocalizer.Instance;
             _workContextAccessor = workContextAccessor;
-
+            _tokenizer = tokenizer;
         }
-
-        public Localizer T { get; set; }
-
+        
         private static string GetPrefix(Fields.SecureFileField field, ContentPart part) {
             return part.PartDefinition.Name + "." + field.Name;
         }
@@ -95,24 +97,14 @@ namespace CloudConstruct.SecureFileField.Drivers {
                                                                           settings.SecureBlobEndpoint, true, settings.SecureDirectoryName);
 
                         } else {
-                            // The secure directory now depends from Settings.UrlType.
                             string url = settings.SecureDirectoryName;
+                            string subfolder = _tokenizer.Replace(settings.CustomSubfolder, new Dictionary<string, object> { { "Content", part.ContentItem } });
 
-                            switch (settings.UrlType) {
-                                case UrlType.Custom:
-                                    if (!string.IsNullOrWhiteSpace(settings.CustomSubfolder)) {
-                                        url = Path.Combine(url, settings.CustomSubfolder);
-                                        if (!Directory.Exists(url))
-                                            Directory.CreateDirectory(url); 
-                                    }
-                                    break;
-                                    
-                                case UrlType.UploadDate:
-                                    string subfolder = upload.Year.ToString() + upload.Month.ToString("00") + upload.Day.ToString("00");
-                                    url = Path.Combine(url, subfolder);
-                                    if (!Directory.Exists(url))
-                                        Directory.CreateDirectory(url);
-                                    break;
+                            if (!string.IsNullOrWhiteSpace(subfolder)) {
+                                field.Subfolder = subfolder;
+                                url = Path.Combine(url, subfolder);
+                                if (!Directory.Exists(url))
+                                    Directory.CreateDirectory(url);
                             }
 
                             provider = new SecureFileStorageProvider(url);
@@ -146,6 +138,7 @@ namespace CloudConstruct.SecureFileField.Drivers {
             context.ImportAttribute(field.FieldDefinition.Name + "." + field.Name, "Width", value => field.Width = Int32.Parse(value));
             context.ImportAttribute(field.FieldDefinition.Name + "." + field.Name, "Height", value => field.Height = Int32.Parse(value));
             context.ImportAttribute(field.FieldDefinition.Name + "." + field.Name, "Upload", value => field.Upload = DateTime.Parse(value));
+            context.ImportAttribute(field.FieldDefinition.Name + "." + field.Name, "Subfolder", value => field.Subfolder = value);
         }
 
         protected override void Exporting(ContentPart part, Fields.SecureFileField field, ExportContentContext context) {
@@ -157,6 +150,7 @@ namespace CloudConstruct.SecureFileField.Drivers {
             context.Element(field.FieldDefinition.Name + "." + field.Name).SetAttributeValue("Width", field.Width);
             context.Element(field.FieldDefinition.Name + "." + field.Name).SetAttributeValue("Height", field.Height);
             context.Element(field.FieldDefinition.Name + "." + field.Name).SetAttributeValue("Upload", field.Upload);
+            context.Element(field.FieldDefinition.Name + "." + field.Name).SetAttributeValue("Subfolder", field.Subfolder);
         }
 
         protected override void Describe(DescribeMembersContext context) {
