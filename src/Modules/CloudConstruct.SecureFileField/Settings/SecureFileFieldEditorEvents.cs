@@ -28,13 +28,6 @@ namespace CloudConstruct.SecureFileField.Settings {
 
             var model = new SecureFileFieldSettings();
             if (updateModel.TryUpdateModel(model, "SecureFileFieldSettings", null, null)) {
-                // I need to check CustomSubfolder value for specific UrlTypes.
-                if (model.UrlType == UrlType.Custom) {
-                    if (string.IsNullOrWhiteSpace(model.CustomSubfolder)) {
-                        updateModel.AddModelError("SecureFileFieldSettings.CustomSubfolder", T("CustomSubfolder missing"));
-                    } 
-                }
-
                 builder.WithSetting("SecureFileFieldSettings.Hint", model.Hint);
                 builder.WithSetting("SecureFileFieldSettings.SecureDirectoryName", model.SecureDirectoryName);
                 builder.WithSetting("SecureFileFieldSettings.SecureBlobAccountName", model.SecureBlobAccountName);
@@ -44,7 +37,6 @@ namespace CloudConstruct.SecureFileField.Settings {
                 builder.WithSetting("SecureFileFieldSettings.AllowedExtensions", model.AllowedExtensions);
                 builder.WithSetting("SecureFileFieldSettings.Required", model.Required.ToString());
                 builder.WithSetting("SecureFileFieldSettings.GenerateFileName", model.GenerateFileName.ToString());
-                builder.WithSetting("SecureFileFieldSettings.UrlType", model.UrlType.ToString());
                 builder.WithSetting("SecureFileFieldSettings.CustomSubfolder", model.CustomSubfolder);
                 builder.WithSetting("SecureFileFieldSettings.Custom1", model.Custom1);
                 builder.WithSetting("SecureFileFieldSettings.Custom2", model.Custom2);
