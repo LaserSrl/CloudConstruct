@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using CloudConstruct.SecureFileField.Providers;
 using CloudConstruct.SecureFileField.Settings;
@@ -120,7 +121,9 @@ namespace CloudConstruct.SecureFileField.Controllers {
                 IStorageFile file = provider.Get<StorageFile>(field.Url);
                 Stream fs = new MemoryStream(file.FileBytes);
 
-                return new FileStreamResult(fs, file.ContentType);
+                string mimeType = MimeMapping.GetMimeMapping(file.FileName);
+
+                return new FileStreamResult(fs, mimeType);
             }
 
 	        return null;
