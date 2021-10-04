@@ -33,7 +33,7 @@ namespace CloudConstruct.SecureFileField.Tokens {
         public void Describe(dynamic context) {
 
 
-            context.For("SecureFileField", T("Secure Fuke Field"), T("Tokens for Secure File Fields"))
+            context.For("SecureFileField", T("Secure File Field"), T("Tokens for Secure File Fields"))
                 .Token("Url", T("Url"), T("The url of the media."))
                 .Token("AlternateText", T("Alternate Text"), T("The alternate text of the media."))
                 .Token("Class", T("Class"), T("The class of the media."))

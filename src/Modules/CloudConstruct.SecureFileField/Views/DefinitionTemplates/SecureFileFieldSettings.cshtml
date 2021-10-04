@@ -52,7 +52,7 @@
         <div>
             <label for="@Html.FieldIdFor(m => m.SharedAccessExpirationMinutes)">@T("Shared Access Expiration")</label>
             @Html.TextBoxFor(m => m.SharedAccessExpirationMinutes, new { @class = "text medium" })
-            <span class="hint">@T("If your would like to use Shared Access Signatures then specify an expiration time in minutes for your URL access.")</span>
+            <span class="hint">@T("If you would like to use Shared Access Signatures then specify an expiration time in minutes for your URL access.")</span>
             <span class="hint">@T("Leave it empty if you don't want to use this option.")</span>
         </div>
     </div>
@@ -79,7 +79,7 @@
         <label for="custom-@Html.FieldIdFor(m => m)" class="forcheckbox">@T("Provide custom parameters")</label>
     </div>
     <div data-controllerid="custom-@Html.FieldIdFor(m => m)">
-        <span class="hint">@T("Custom parameters can be used if your own views.")</span>
+        <span class="hint">@T("Custom parameters can be used in your own views.")</span>
         <div>
             <label for="@Html.FieldIdFor(m => m.Custom1)">@T("Custom1")</label>
             @Html.TextBoxFor(m => m.Custom1, new { @class = "text medium" })
