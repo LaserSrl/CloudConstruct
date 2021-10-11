@@ -21,13 +21,15 @@ namespace CloudConstruct.SecureFileField.Controllers {
 
 		private readonly IOrchardServices _services;
         private readonly IAuthorizationService _authorizationService;
+        private readonly IEncryptionService _encryptionService;
         private static readonly string[] AnonymousRole = new[] { "Anonymous" };
         private static readonly string[] AuthenticatedRole = new[] { "Authenticated" };
 
-        public SecureFileFieldController(IOrchardServices services, IAuthorizationService authorizationService)
+        public SecureFileFieldController(IOrchardServices services, IAuthorizationService authorizationService, IEncryptionService encryptionService)
         {
 			_services = services;
             _authorizationService = authorizationService;
+            _encryptionService = encryptionService;
         }
 
         /// <summary>
@@ -36,6 +38,7 @@ namespace CloudConstruct.SecureFileField.Controllers {
         /// <param name="id">Unique Id on Parent Content Item</param>
         /// <param name="fieldName">Unique Field Name for the file field.</param>
         /// <returns></returns>
+        [OutputCache(NoStore = true, Duration = 0)]
 	    public FileResult GetSecureFile(int id, string fieldName) {
 	        var accessGranted = false;
 	        WorkContext wc = _services.WorkContext;
@@ -120,6 +123,13 @@ namespace CloudConstruct.SecureFileField.Controllers {
 
                 IStorageFile file = provider.Get<StorageFile>(field.Url);
                 Stream fs = new MemoryStream(file.FileBytes);
+
+                if (settings.EncryptFile) {
+                    byte[] fileBytes = new byte[fs.Length];
+                    fs.Read(fileBytes, 0, (int)fs.Length);
+                    fileBytes = _encryptionService.Decode(fileBytes);
+                    fs = new MemoryStream(fileBytes);
+                }
 
                 string mimeType = MimeMapping.GetMimeMapping(file.FileName);
 

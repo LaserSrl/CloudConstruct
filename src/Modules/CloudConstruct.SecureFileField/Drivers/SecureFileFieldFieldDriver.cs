@@ -5,6 +5,7 @@ using Orchard.ContentManagement;
 using Orchard.ContentManagement.Drivers;
 using Orchard.ContentManagement.Handlers;
 using Orchard.Localization;
+using Orchard.Security;
 using Orchard.Tokens;
 using Orchard.Utility.Extensions;
 using System;
@@ -16,12 +17,14 @@ namespace CloudConstruct.SecureFileField.Drivers {
 
     public class SecureFileFieldDriver : ContentFieldDriver<Fields.SecureFileField> {
         private readonly IWorkContextAccessor _workContextAccessor;
+        private readonly IEncryptionService _encryptionService;
         public Localizer T { get; set; }
         private readonly ITokenizer _tokenizer;
 
-        public SecureFileFieldDriver(IWorkContextAccessor workContextAccessor, ITokenizer tokenizer) {
+        public SecureFileFieldDriver(IWorkContextAccessor workContextAccessor, IEncryptionService encryptionService, ITokenizer tokenizer) {
             T = NullLocalizer.Instance;
             _workContextAccessor = workContextAccessor;
+            _encryptionService = encryptionService;
             _tokenizer = tokenizer;
         }
         
@@ -114,6 +117,10 @@ namespace CloudConstruct.SecureFileField.Drivers {
                         byte[] buffer = new byte[length];
                         using (Stream stream = file.InputStream) {
                             stream.Read(buffer, 0, length);
+                        }
+
+                        if (settings.EncryptFile) {
+                            buffer = _encryptionService.Encode(buffer);
                         }
 
                         provider.Insert(fname, buffer, file.ContentType, length, true);

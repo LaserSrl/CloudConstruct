@@ -95,6 +95,12 @@
     </div>
 </fieldset>
 <fieldset>
+    <div>
+        @Html.CheckBoxFor(m => m.EncryptFile) <label for="@Html.FieldIdFor(m => m.EncryptFile)" class="forcheckbox">@T("The media is encrypted")</label>
+        <span class="hint">@T("Check to encrypt the secure media while uploading it.")</span>
+    </div>
+</fieldset>
+<fieldset>
     <label for="@Html.FieldIdFor(m => m.Hint)">@T("Help text")</label>
     @Html.TextAreaFor(m => m.Hint, new { @class = "text medium", rows = "5" })
     <span class="hint">@T("The help text is written under the field when authors are selecting a media.")</span>
