@@ -80,12 +80,12 @@ namespace CloudConstruct.SecureFileField.Drivers {
                             fname = Guid.NewGuid().ToString("n") + extension;
                         }
                         if (extensions.Any() && fname != null && !extensions.Any(x => fname.EndsWith(x, StringComparison.OrdinalIgnoreCase))) {
-                            updater.AddModelError("Url", T("The field {0} must have one of these extensions: {1}", field.Name.CamelFriendly(), settings.AllowedExtensions));
+                            updater.AddModelError("Url", T("The field {0} must have one of these extensions: {1}", field.DisplayName.CamelFriendly(), settings.AllowedExtensions));
                             return Editor(part, field, shapeHelper);
                         }
 
                         if (settings.Required && String.IsNullOrWhiteSpace(fname)) {
-                            updater.AddModelError("Url", T("The field {0} is mandatory", field.Name.CamelFriendly()));
+                            updater.AddModelError("Url", T("The field {0} is mandatory", field.DisplayName.CamelFriendly()));
                             return Editor(part, field, shapeHelper);
                         }
 
