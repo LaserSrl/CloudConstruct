@@ -14,6 +14,7 @@ using Orchard.Core.Common.Models;
 using Orchard.Roles.Models;
 using Orchard.Security;
 using Orchard.Core.Contents;
+using Orchard.Themes;
 
 namespace CloudConstruct.SecureFileField.Controllers {
 
@@ -39,7 +40,7 @@ namespace CloudConstruct.SecureFileField.Controllers {
         /// <param name="fieldName">Unique Field Name for the file field.</param>
         /// <returns></returns>
         [OutputCache(NoStore = true, Duration = 0)]
-	    public FileResult GetSecureFile(int id, string fieldName) {
+	    public ActionResult GetSecureFile(int id, string fieldName) {
 	        var accessGranted = false;
 	        WorkContext wc = _services.WorkContext;
 	        IUser user = _services.WorkContext.CurrentUser;
@@ -53,8 +54,8 @@ namespace CloudConstruct.SecureFileField.Controllers {
 	        var content = _services.ContentManager.Get<ContentPart>(id);
 
 	        if (content == null) {
-	            return null;
-	        }
+                return RedirectToAction("NotFound");
+            }
 
 	        var part = content.ContentItem.As<ContentPermissionsPart>();
 
@@ -121,6 +122,10 @@ namespace CloudConstruct.SecureFileField.Controllers {
 	                provider = new SecureFileStorageProvider(repo);
 	            }
 
+                if (!provider.Exists(field.Url)) {
+                    return RedirectToAction("NotFound");
+                }
+
                 IStorageFile file = provider.Get<StorageFile>(field.Url);
                 Stream fs = new MemoryStream(file.FileBytes);
 
@@ -136,8 +141,13 @@ namespace CloudConstruct.SecureFileField.Controllers {
                 return new FileStreamResult(fs, mimeType);
             }
 
-	        return null;
-	    }
+            return RedirectToAction("NotFound");
+        }
+
+        [Themed]
+        public ActionResult NotFound() {
+            return HttpNotFound();
+        }
 
 	    private static bool HasOwnership(IUser user, IContent content)
         {
