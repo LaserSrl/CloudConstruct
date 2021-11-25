@@ -62,7 +62,7 @@ msgstr "Ottienilo dal Portale Azure. Lascia il carattere '/' finale."
 
 msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
 msgid "Help text"
-msgstr "Testo di aiuto"
+msgstr "Testo della guida"
 
 msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
 msgid "If you would like to use Shared Access Signatures then specify an expiration time in minutes for your URL access."
@@ -150,7 +150,7 @@ msgstr "Il campo {0} deve avere una di queste estensioni: {1}"
 
 msgctxt "CloudConstruct.SecureFileField.Drivers.SecureFileFieldDriver"
 msgid "The url of the media."
-msgstr "L'URL del media."
+msgstr "L'url del file multimediale."
 
 msgctxt "CloudConstruct.SecureFileField.Drivers.SecureFileFieldDriver"
 msgid "Url"
@@ -186,7 +186,7 @@ msgstr "L'allineamento del media."
 
 msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
 msgid "The alternate text of the media."
-msgstr "Il testo alternativo del media."
+msgstr "Il testo alternativo per questo file multimediale."
 
 msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
 msgid "The class of the media."
@@ -202,7 +202,7 @@ msgstr "Lo stile del media."
 
 msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
 msgid "The url of the media."
-msgstr "L'URL del media."
+msgstr "L'url del file multimediale."
 
 msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
 msgid "The width of the media."
