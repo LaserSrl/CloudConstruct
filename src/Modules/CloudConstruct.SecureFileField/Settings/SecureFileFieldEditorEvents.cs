@@ -41,6 +41,7 @@ namespace CloudConstruct.SecureFileField.Settings {
                 builder.WithSetting("SecureFileFieldSettings.Custom1", model.Custom1);
                 builder.WithSetting("SecureFileFieldSettings.Custom2", model.Custom2);
                 builder.WithSetting("SecureFileFieldSettings.Custom3", model.Custom3);
+                builder.WithSetting("SecureFileFieldSettings.EncryptFile", model.EncryptFile.ToString());
             }
 
             yield return DefinitionTemplate(model);

@@ -13,12 +13,28 @@ msgid "Allow only specific extensions"
 msgstr "Permetti solo estensioni specifiche"
 
 msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Blob Account Name"
+msgstr "Nome account Blob"
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Blob Endpoint"
+msgstr "Endpoint Blob"
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
 msgid "Check to ensure the file name unicity."
 msgstr "Seleziona per imporre di usare nomi unici per i files."
 
 msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
 msgid "Check to ensure the user is providing a valid media for this field."
 msgstr "Seleziona per verificare che l'utente dia un media valido per questo campo."
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Custom parameters can be used in your own views."
+msgstr "I parametri personalizzati possono essere utilizzati nelle tue visualizzazioni."
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Custom subfolder. It can be a token."
+msgstr "Sottocartella personalizzata. Può essere un token."
 
 msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
 msgid "Custom1"
@@ -37,8 +53,24 @@ msgid "Generate a new file name at every upload"
 msgstr "Genera un nuovo nome file ad ogni caricamento"
 
 msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Get this from the Azure Portal."
+msgstr "Ottienilo dal Portale Azure."
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Get this from the Azure Portal. Leave trailing '/'."
+msgstr "Ottienilo dal Portale Azure. Lascia il carattere '/' finale."
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
 msgid "Help text"
-msgstr "Testo di aiuto"
+msgstr "Testo della guida"
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "If you would like to use Shared Access Signatures then specify an expiration time in minutes for your URL access."
+msgstr "Se vuoi usare la Firma di Accesso Condiviso, specifica la scadenza in minuti per il tuo indirizzo di accesso."
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "In case the custom subfolder textbox is left empty, files will not be sorted into subfolders."
+msgstr "Nel caso in cui la casella della sottocartella sia lasciata vuota, i file non verranno ordinati in sottocartelle."
 
 msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
 msgid "Leave it empty if you don't want to apply any restriction."
@@ -53,8 +85,28 @@ msgid "Please enter in your Windows Azure Blob Storage account name."
 msgstr "Inserisci il tuo nome di account per Windows Azure Blob Storage."
 
 msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Provide custom parameters"
+msgstr "Fornire parametri personalizzati"
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Remember that some tokens may not work if content is created via Content Creation service."
+msgstr "Ricorda che alcuni token potrebbero non funzionare se il contenuto viene creato tramite il servizio di Content Creation."
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Secure Access Key"
+msgstr "Chiave per l'Accesso Sicuro"
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
 msgid "Secure Directory or Container Name"
 msgstr "Nome della cartella o del contenitore sicuro"
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Shared Access Expiration"
+msgstr "Scadenza Accesso Condiviso"
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "The endpoint for your Blob Storage."
+msgstr "L'endpoint del tuo Archivio Blob."
 
 msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
 msgid "The help text is written under the field when authors are selecting a media."
@@ -65,8 +117,16 @@ msgid "The media is required"
 msgstr "Il media è necessario"
 
 msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "The secret storage access key."
+msgstr "La chiave di accesso all'archivio segreto."
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
 msgid "The secure directory/container name will be used to store your files inside. Make sure this container or folder exists prior to uploading a file. Example, 'c:\\temp' or 'secure' for BLOBS."
 msgstr "Il nome della directory/contenitore che sarà usato per i files. Assicurati che questo contenitore o cartella esista prima di caricare i files. Esempi: 'c:\\temp' o 'sicuro' per i BLOB."
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Use Secure Blob Storage"
+msgstr "Usa l'Archivio Sicuro Blob"
 
 msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
 msgid "You can define a set of extensions the user will be able to pick, separated by spaces, e.g. jpg png gif"
@@ -90,7 +150,7 @@ msgstr "Il campo {0} deve avere una di queste estensioni: {1}"
 
 msgctxt "CloudConstruct.SecureFileField.Drivers.SecureFileFieldDriver"
 msgid "The url of the media."
-msgstr "L'URL del media."
+msgstr "L'url del file multimediale."
 
 msgctxt "CloudConstruct.SecureFileField.Drivers.SecureFileFieldDriver"
 msgid "Url"
@@ -113,6 +173,10 @@ msgid "Height"
 msgstr "Altezza"
 
 msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
+msgid "Secure File Field"
+msgstr "Campo di File Sicuro"
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
 msgid "Style"
 msgstr "Stile"
 
@@ -122,7 +186,7 @@ msgstr "L'allineamento del media."
 
 msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
 msgid "The alternate text of the media."
-msgstr "Il testo alternativo del media."
+msgstr "Il testo alternativo per questo file multimediale."
 
 msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
 msgid "The class of the media."
@@ -138,7 +202,7 @@ msgstr "Lo stile del media."
 
 msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
 msgid "The url of the media."
-msgstr "L'URL del media."
+msgstr "L'url del file multimediale."
 
 msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
 msgid "The width of the media."
@@ -153,6 +217,38 @@ msgid "Url"
 msgstr "URL"
 
 msgctxt "CloudConstruct.SecureFileField.Tokens.FieldTokens"
+msgid "Width"
+msgstr "Larghezza"
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.of"
+msgid "Alignment"
+msgstr "Allineamento"
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.of"
+msgid "Height"
+msgstr "Altezza"
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.of"
+msgid "Style"
+msgstr "Stile"
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.of"
+msgid "The alignment of the media."
+msgstr "L'allineamento del media."
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.of"
+msgid "The height of the media."
+msgstr "L'altezza del media."
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.of"
+msgid "The style of the media."
+msgstr "Lo stile del media."
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.of"
+msgid "The width of the media."
+msgstr "La larghezza del media."
+
+msgctxt "CloudConstruct.SecureFileField.Tokens.of"
 msgid "Width"
 msgstr "Larghezza"
 

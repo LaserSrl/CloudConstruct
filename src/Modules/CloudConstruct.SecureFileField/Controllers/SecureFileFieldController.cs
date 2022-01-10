@@ -14,6 +14,7 @@ using Orchard.Core.Common.Models;
 using Orchard.Roles.Models;
 using Orchard.Security;
 using Orchard.Core.Contents;
+using Orchard.Themes;
 
 namespace CloudConstruct.SecureFileField.Controllers {
 
@@ -21,13 +22,15 @@ namespace CloudConstruct.SecureFileField.Controllers {
 
 		private readonly IOrchardServices _services;
         private readonly IAuthorizationService _authorizationService;
+        private readonly IEncryptionService _encryptionService;
         private static readonly string[] AnonymousRole = new[] { "Anonymous" };
         private static readonly string[] AuthenticatedRole = new[] { "Authenticated" };
 
-        public SecureFileFieldController(IOrchardServices services, IAuthorizationService authorizationService)
+        public SecureFileFieldController(IOrchardServices services, IAuthorizationService authorizationService, IEncryptionService encryptionService)
         {
 			_services = services;
             _authorizationService = authorizationService;
+            _encryptionService = encryptionService;
         }
 
         /// <summary>
@@ -36,7 +39,8 @@ namespace CloudConstruct.SecureFileField.Controllers {
         /// <param name="id">Unique Id on Parent Content Item</param>
         /// <param name="fieldName">Unique Field Name for the file field.</param>
         /// <returns></returns>
-	    public FileResult GetSecureFile(int id, string fieldName) {
+        [OutputCache(NoStore = true, Duration = 0)]
+	    public ActionResult GetSecureFile(int id, string fieldName) {
 	        var accessGranted = false;
 	        WorkContext wc = _services.WorkContext;
 	        IUser user = _services.WorkContext.CurrentUser;
@@ -50,8 +54,8 @@ namespace CloudConstruct.SecureFileField.Controllers {
 	        var content = _services.ContentManager.Get<ContentPart>(id);
 
 	        if (content == null) {
-	            return null;
-	        }
+                return RedirectToAction("NotFound");
+            }
 
 	        var part = content.ContentItem.As<ContentPermissionsPart>();
 
@@ -118,16 +122,32 @@ namespace CloudConstruct.SecureFileField.Controllers {
 	                provider = new SecureFileStorageProvider(repo);
 	            }
 
+                if (!provider.Exists(field.Url)) {
+                    return RedirectToAction("NotFound");
+                }
+
                 IStorageFile file = provider.Get<StorageFile>(field.Url);
                 Stream fs = new MemoryStream(file.FileBytes);
+
+                if (settings.EncryptFile) {
+                    byte[] fileBytes = new byte[fs.Length];
+                    fs.Read(fileBytes, 0, (int)fs.Length);
+                    fileBytes = _encryptionService.Decode(fileBytes);
+                    fs = new MemoryStream(fileBytes);
+                }
 
                 string mimeType = MimeMapping.GetMimeMapping(file.FileName);
 
                 return new FileStreamResult(fs, mimeType);
             }
 
-	        return null;
-	    }
+            return RedirectToAction("NotFound");
+        }
+
+        [Themed]
+        public ActionResult NotFound() {
+            return HttpNotFound();
+        }
 
 	    private static bool HasOwnership(IUser user, IContent content)
         {
