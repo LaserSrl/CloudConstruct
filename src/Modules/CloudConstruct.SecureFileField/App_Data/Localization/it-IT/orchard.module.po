@@ -1,5 +1,5 @@
 ﻿# Orchard resource strings - it-IT
-# Copyright (c) 2021 Laser s.r.l.
+# Copyright (c) 2022 Laser s.r.l.
 
 
 # > #: msgctxt { contesto del messaggio - Originale }
@@ -19,6 +19,10 @@ msgstr "Nome account Blob"
 msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
 msgid "Blob Endpoint"
 msgstr "Endpoint Blob"
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "Check to encrypt the secure media while uploading it."
+msgstr "Seleziona per crittografare il media sicuro durante l'upload."
 
 msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
 msgid "Check to ensure the file name unicity."
@@ -111,6 +115,10 @@ msgstr "L'endpoint del tuo Archivio Blob."
 msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
 msgid "The help text is written under the field when authors are selecting a media."
 msgstr "Il testo di aiuto è scritto sotto il campo quando gli autori stanno selezionando un media."
+
+msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
+msgid "The media is encrypted"
+msgstr "Il media è crittografato"
 
 msgctxt "~/Modules/CloudConstruct.SecureFileField/Views/DefinitionTemplates/SecureFileFieldSettings.cshtml"
 msgid "The media is required"
