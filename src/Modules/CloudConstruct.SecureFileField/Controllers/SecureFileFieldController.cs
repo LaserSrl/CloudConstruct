@@ -122,7 +122,7 @@ namespace CloudConstruct.SecureFileField.Controllers {
 	                provider = new SecureFileStorageProvider(repo);
 	            }
 
-                if (!provider.Exists(field.Url)) {
+                if (string.IsNullOrWhiteSpace(field.Url) || !provider.Exists(field.Url)) {
                     return RedirectToAction("NotFound");
                 }
 
