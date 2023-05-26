@@ -27,7 +27,7 @@ namespace CloudConstruct.SecureFileField.Drivers {
             _encryptionService = encryptionService;
             _tokenizer = tokenizer;
         }
-        
+
         private static string GetPrefix(Fields.SecureFileField field, ContentPart part) {
             return part.PartDefinition.Name + "." + field.Name;
         }
@@ -37,21 +37,21 @@ namespace CloudConstruct.SecureFileField.Drivers {
         }
 
         protected override DriverResult Display(ContentPart part, Fields.SecureFileField field, string displayType, dynamic shapeHelper) {
-            //does the user want to use shared access sigs
-            var settings = field.PartFieldDefinition.Settings.GetModel<SecureFileFieldSettings>();
-
-            if (settings.SharedAccessExpirationMinutes > 0) {
-                if (!string.IsNullOrEmpty(settings.SecureBlobAccountName)) {
-
-                    SecureAzureBlobStorageProvider provider = new SecureAzureBlobStorageProvider(settings.SecureBlobAccountName, settings.SecureSharedKey,
-                                                                                                 settings.SecureBlobEndpoint, true, settings.SecureDirectoryName);
-
-                    field.SharedAccessUrl = provider.GetSharedAccessSignature(field.Url, settings.SharedAccessExpirationMinutes);
-                }
-            }
-
             return ContentShape("Fields_SecureFile", GetDifferentiator(field, part),
-                () => shapeHelper.Fields_SecureFile());
+                () => {
+                    //does the user want to use shared access sigs
+                    var settings = field.PartFieldDefinition.Settings.GetModel<SecureFileFieldSettings>();
+
+                    if (settings.SharedAccessExpirationMinutes > 0) {
+                        if (!string.IsNullOrEmpty(settings.SecureBlobAccountName)) {
+                            SecureAzureBlobStorageProvider provider = new SecureAzureBlobStorageProvider(settings.SecureBlobAccountName, settings.SecureSharedKey,
+                                                                                                         settings.SecureBlobEndpoint, true, settings.SecureDirectoryName);
+                            field.SharedAccessUrl = provider.GetSharedAccessSignature(field.Url, settings.SharedAccessExpirationMinutes);
+                        }
+                    }
+
+                    return shapeHelper.Fields_SecureFile();
+                });
         }
 
         protected override DriverResult Editor(ContentPart part, Fields.SecureFileField field, dynamic shapeHelper) {
