@@ -141,7 +141,12 @@ namespace CloudConstruct.SecureFileField.Controllers {
                 return new FileStreamResult(fs, mimeType);
             }
 
-            return RedirectToAction("NotFound");
+            return RedirectToAction("Unauthorized");
+        }
+
+        [Themed]
+        public ActionResult Unauthorized () {
+            return new HttpUnauthorizedResult();
         }
 
         [Themed]
